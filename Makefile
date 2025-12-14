@@ -40,6 +40,7 @@ CFLAGS := \
 	-fno-pie \
 	-no-pie \
 	-fno-builtin \
+	-fno-ident \
 	-Wall \
 	-Wextra \
 	-Wpedantic \
@@ -49,10 +50,11 @@ CFLAGS := \
 	-fomit-frame-pointer \
 	-fdata-sections \
 	-fno-unwind-tables \
-	-fno-asynchronous-unwind-tables
+	-fno-asynchronous-unwind-tables 
+
 
 # Linker flags
-LDFLAGS := -nostdlib -static -Wl,-e,_start -Wl,--gc-sections -Wl,--build-id=none -Wl,--strip-all -Wl,--hash-style=gnu
+LDFLAGS := -nostdlib -static -Wl,-e,_start -Wl,-O,-s,--gc-sections -Wl,--build-id=none -Wl,--strip-all #-Wl,--hash-style=gnu
 
 ifeq ($(CC),gcc)
 	LDFLAGS += -Wl,--nmagic -Wl,--no-relax
