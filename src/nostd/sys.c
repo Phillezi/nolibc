@@ -85,11 +85,11 @@ static inline long __syscall3(long n, long a1, long a2, long a3) {
 
 static inline long __syscall4(long n, long a1, long a2, long a3, long a4) {
     long r;
-    register long r10 __asm__("r10") = a4;
     #ifdef linux
         #ifndef __x86_64__
             #error "unsupported architecture for __syscall4, only x86_64 is supported"
         #endif
+    register long r10 __asm__("r10") = a4;
     __asm__ volatile (
         "syscall"
         : "=a"(r)
